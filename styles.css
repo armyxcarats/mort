@@ -547,14 +547,16 @@ h2 {
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 92px;
+  width: 72px;
   text-align: center;
-  font-size: 0.72rem;
+  font-size: 0.62rem;
   font-weight: 700;
   color: #6e2f48;
   line-height: 1.1;
   letter-spacing: 0.02em;
   text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+  overflow-wrap: break-word;
+  transition: transform 4.5s cubic-bezier(0.12, 0.75, 0.18, 1);
 }
 
 .wheel-center {

@@ -67,10 +67,18 @@ function buildWheelLabels() {
     label.className = 'wheel-label';
     label.textContent = idea;
 
-    const angle = index * segmentAngle + segmentAngle / 2 - 90;
-    label.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(-118px) rotate(${-angle}deg)`;
+    const angle = index * segmentAngle + segmentAngle / 2;
+    label.dataset.angle = angle;
+    label.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(-102px) rotate(${-angle - wheelRotation}deg)`;
 
     wheelLabels.appendChild(label);
+  });
+}
+
+function keepWheelLabelsReadable() {
+  wheelLabels.querySelectorAll('.wheel-label').forEach((label) => {
+    const angle = Number(label.dataset.angle);
+    label.style.transform = `translate(-50%, -50%) rotate(${angle}deg) translateY(-102px) rotate(${-angle - wheelRotation}deg)`;
   });
 }
 
@@ -336,13 +344,19 @@ function spinWheel() {
 
   const segmentDegrees = 360 / wheelSegments;
   const targetIndex = Math.floor(Math.random() * dateIdeas.length);
-  const targetAngle = 360 - (targetIndex * segmentDegrees + segmentDegrees / 2);
+  const targetCenter = targetIndex * segmentDegrees + segmentDegrees / 2;
+  const currentAngle = ((wheelRotation % 360) + 360) % 360;
+  const targetAngle = (360 - targetCenter - currentAngle + 360) % 360;
   const extraSpins = 6;
   const finalRotation = wheelRotation + extraSpins * 360 + targetAngle;
 
   wheelRotation = finalRotation;
   wheel.style.transform = `rotate(${finalRotation}deg)`;
-  selectedDateIdea = dateIdeas[targetIndex];
+  keepWheelLabelsReadable();
+
+  const landedAngle = ((360 - (finalRotation % 360)) + 360) % 360;
+  const landedIndex = Math.floor(landedAngle / segmentDegrees) % wheelSegments;
+  selectedDateIdea = dateIdeas[landedIndex];
 
   spinBtn.disabled = true;
   wheelResult.textContent = 'Spinning...';
