@@ -178,6 +178,47 @@ body {
   text-align: center;
 }
 
+.music-player {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.86);
+  border-radius: 18px;
+  background: rgba(255, 250, 253, 0.84);
+  box-shadow: 0 12px 24px rgba(197, 82, 128, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.music-toggle {
+  border: 0;
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: linear-gradient(135deg, var(--pink-1), var(--pink-2));
+  color: var(--white);
+  cursor: pointer;
+  font: 600 0.82rem "Fredoka", sans-serif;
+}
+
+.volume-control {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+#music-volume {
+  width: 92px;
+  accent-color: var(--pink-2);
+  cursor: pointer;
+}
+
 @media (max-width: 760px) {
   .login-layout {
     grid-template-columns: 1fr;
@@ -869,6 +910,17 @@ h2 {
 @media (max-width: 640px) {
   .app-card {
     min-height: 560px;
+  }
+
+  .music-player {
+    right: 10px;
+    bottom: 10px;
+    gap: 8px;
+    padding: 8px 10px;
+  }
+
+  .volume-control span {
+    display: none;
   }
 
   .screen {

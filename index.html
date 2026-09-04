@@ -165,6 +165,15 @@
       </main>
     </div>
 
+    <audio id="site-music" src="luv song.mp3" loop preload="auto"></audio>
+    <div class="music-player" aria-label="Music controls">
+      <button id="music-toggle" class="music-toggle" type="button" aria-label="Play music">Play music</button>
+      <label class="volume-control" for="music-volume">
+        <span>Volume</span>
+        <input id="music-volume" type="range" min="0" max="1" step="0.01" value="0.45" />
+      </label>
+    </div>
+
     <script src="script.js"></script>
   </body>
 </html>

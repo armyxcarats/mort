@@ -29,6 +29,9 @@ const loginForm = document.getElementById('login-form');
 const nicknameInput = document.getElementById('nickname-input');
 const passwordInput = document.getElementById('password-input');
 const loginMessage = document.getElementById('login-message');
+const siteMusic = document.getElementById('site-music');
+const musicToggle = document.getElementById('music-toggle');
+const musicVolume = document.getElementById('music-volume');
 
 const noMessages = [
   'Nope?',
@@ -42,6 +45,18 @@ const noMessages = [
   'rlly baby?...',
   'The button broke... so is my heart 😭'
 ];
+
+siteMusic.volume = Number(musicVolume.value);
+
+function updateMusicButton() {
+  const isPlaying = !siteMusic.paused;
+  musicToggle.textContent = isPlaying ? 'Pause music' : 'Play music';
+  musicToggle.setAttribute('aria-label', isPlaying ? 'Pause music' : 'Play music');
+}
+
+function startMusic() {
+  siteMusic.play().then(updateMusicButton).catch(updateMusicButton);
+}
 
 const dateIdeas = [
   'Movie Date',
@@ -105,6 +120,7 @@ loginForm.addEventListener('submit', (event) => {
 
   if (nickname && password === 'mort') {
     loginMessage.textContent = '';
+    startMusic();
     showScreen(inviteScreen);
     return;
   }
@@ -112,6 +128,22 @@ loginForm.addEventListener('submit', (event) => {
   loginMessage.textContent = 'Wrong password, either ur not my baby or u just a hacker';
   passwordInput.select();
 });
+
+musicToggle.addEventListener('click', () => {
+  if (siteMusic.paused) {
+    startMusic();
+  } else {
+    siteMusic.pause();
+    updateMusicButton();
+  }
+});
+
+musicVolume.addEventListener('input', () => {
+  siteMusic.volume = Number(musicVolume.value);
+});
+
+siteMusic.addEventListener('play', updateMusicButton);
+siteMusic.addEventListener('pause', updateMusicButton);
 
 function moveNoButton() {
   const container = noBtn.parentElement;
