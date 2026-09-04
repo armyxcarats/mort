@@ -65,6 +65,7 @@ body {
   max-width: 360px;
   margin: 0 auto;
   text-align: left;
+  justify-items: stretch;
 }
 
 .login-form label {

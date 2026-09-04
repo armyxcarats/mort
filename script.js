@@ -85,13 +85,13 @@ loginForm.addEventListener('submit', (event) => {
   const nickname = nicknameInput.value.trim().toLowerCase();
   const password = passwordInput.value;
 
-  if (nickname === 'baby' && password === 'mort') {
+  if (nickname && password === 'mort') {
     loginMessage.textContent = '';
     showScreen(inviteScreen);
     return;
   }
 
-  loginMessage.textContent = 'Hmm... that is not quite right, my love. Try your 4-letter nickname and the secret password.';
+  loginMessage.textContent = 'Almost, my love. Any nickname works, but the 4-letter password is still a secret.';
   passwordInput.select();
 });
 
