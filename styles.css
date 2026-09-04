@@ -664,6 +664,12 @@ h2 {
 
 .outfit-selection {
   min-width: 0;
+  text-align: center;
+}
+
+.outfit-selection .confirm-btn {
+  display: block;
+  margin: 0 auto;
 }
 
 .outfit-preview {
