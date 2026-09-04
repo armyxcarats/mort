@@ -77,6 +77,10 @@ function showScreen(screen) {
   [loginScreen, inviteScreen, planScreen, outfitScreen].forEach((element) => {
     element.classList.toggle('active', element === screen);
   });
+
+  if (screen === inviteScreen) {
+    requestAnimationFrame(positionCats);
+  }
 }
 
 loginForm.addEventListener('submit', (event) => {
@@ -91,7 +95,7 @@ loginForm.addEventListener('submit', (event) => {
     return;
   }
 
-  loginMessage.textContent = 'Almost, my love. Any nickname works, but the 4-letter password is still a secret.';
+  loginMessage.textContent = 'Wrong password, either ur not my baby or u just a hacker';
   passwordInput.select();
 });
 
@@ -200,8 +204,7 @@ function moveNoButton() {
       catTipNo.style.visibility = 'visible';
       catTipNo.style.zIndex = '31';
       catTipNo.style.transformOrigin = '50% 100%';
-      // copy the exact Yes-cat placement and angle for the No cat
-      catTipNo.style.transform = `translateX(calc(-50% + ${yesOffsetX}px)) rotate(-14deg)`;
+      catTipNo.style.transform = `translateX(calc(-50% + ${noOffsetX}px)) rotate(-14deg)`;
     }
   });
 }
@@ -245,8 +248,7 @@ function positionCats() {
     catTipNo.style.visibility = 'visible';
     catTipNo.style.zIndex = '31';
     catTipNo.style.transformOrigin = '50% 100%';
-    // copy the exact Yes-cat placement and angle for the No cat
-    catTipNo.style.transform = `translateX(calc(-50% + ${yesOffsetX}px)) rotate(-14deg)`;
+    catTipNo.style.transform = `translateX(calc(-50% + ${noOffsetX}px)) rotate(-14deg)`;
   }
 }
 
@@ -405,8 +407,10 @@ window.addEventListener('DOMContentLoaded', () => {
   yesBtn.style.left = '32%';
   yesBtn.style.top = '50%';
   yesBtn.style.transform = `translate(-50%, -50%) scale(${yesScale})`;
-  // ensure cat GIFs start directly on top of their respective buttons
-  positionCats();
+  // Position cats after the invitation screen becomes visible.
+  if (inviteScreen.classList.contains('active')) {
+    positionCats();
+  }
 
   // hide No cat automatically if the No button becomes hidden or transparent
   if (noBtn && catTipNo) {
@@ -422,5 +426,11 @@ window.addEventListener('DOMContentLoaded', () => {
     obs.observe(noBtn, { attributes: true, attributeFilter: ['style', 'class'] });
     // also check once on load
     hideIfButtonHidden();
+  }
+});
+
+window.addEventListener('resize', () => {
+  if (inviteScreen.classList.contains('active')) {
+    positionCats();
   }
 });
