@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Our Date Plan</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="bg-overlay" aria-hidden="true"></div>
+    <div class="page-shell">
+      <div class="glow glow-one"></div>
+      <div class="glow glow-two"></div>
+
+      <main class="app-card">
+        <section id="invite-screen" class="screen active">
+          <p class="eyebrow">A tiny question baby...</p>
+          <h1>Will you go on a date with me?</h1>
+          <p class="subtitle">I picked the best seat, the cutest plan, and a little bit of courage for this one.</p>
+
+          <div class="choice-row">
+            <div id="heart-burst" class="heart-burst" aria-hidden="true"></div>
+            <div id="no-btn-shards" class="no-btn-shards" aria-hidden="true"></div>
+            <img id="cat-tip-yes" class="cat-tip cat-tip-yes" src="cat-tip.gif" alt="cat tip yes" aria-hidden="true" />
+            <img id="cat-tip-no" class="cat-tip cat-tip-no" src="cat-tip.gif" alt="cat tip no" aria-hidden="true" />
+            <button id="yes-btn" class="action-btn yes-btn">Yes</button>
+            <button id="no-btn" class="action-btn no-btn" type="button">No</button>
+          </div>
+        </section>
+
+        <section id="plan-screen" class="screen">
+          <p class="eyebrow">Perfect, let's plan it</p>
+          <h2>When should we go?</h2>
+
+          <div class="plan-layout">
+            <div class="date-column">
+              <div class="date-picker-wrap">
+                <label for="date-picker">Pick a date</label>
+                <input id="date-picker" type="date" />
+              </div>
+
+              <div class="picked-date-box">
+                <p>Chosen date</p>
+                <strong id="selected-date-text">No date picked yet</strong>
+              </div>
+            </div>
+
+            <div class="wheel-section">
+              <div class="wheel-stage">
+                <div class="wheel-pointer"></div>
+                <div id="wheel" class="wheel" aria-label="Date wheel">
+                  <div class="wheel-center"></div>
+                  <div id="wheel-labels" class="wheel-labels"></div>
+                </div>
+              </div>
+
+              <div class="wheel-controls">
+                <button id="spin-btn" class="action-btn spin-btn">Spin the wheel</button>
+                <button id="love-date-btn" class="action-btn secondary-btn hidden">I love this date</button>
+              </div>
+
+              <p id="wheel-result" class="wheel-result">The wheel will choose our vibe.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="outfit-screen" class="screen">
+          <p class="eyebrow">Dress for the moment</p>
+          <h2>What outfit should we wear?</h2>
+
+          <div class="outfit-grid" id="outfit-grid">
+            <button class="outfit-card" data-outfit="Cute Casual">
+              <span class="emoji">💖</span>
+              <span>Cute Casual</span>
+            </button>
+            <button class="outfit-card" data-outfit="Dreamy Pastel">
+              <span class="emoji">🌸</span>
+              <span>Dreamy Pastel</span>
+            </button>
+            <button class="outfit-card" data-outfit="Cozy Chic">
+              <span class="emoji">🧣</span>
+              <span>Cozy Chic</span>
+            </button>
+            <button class="outfit-card" data-outfit="Dressy Date">
+              <span class="emoji">✨</span>
+              <span>Dressy Date</span>
+            </button>
+            <button class="outfit-card" data-outfit="Street Style">
+              <span class="emoji">🔥</span>
+              <span>Street Style</span>
+            </button>
+            <button class="outfit-card" data-outfit="Classic Romance">
+              <span class="emoji">🌹</span>
+              <span>Classic Romance</span>
+            </button>
+          </div>
+
+          <button id="finalize-btn" class="action-btn confirm-btn">Lock in the outfit</button>
+          <p id="final-message" class="final-message"></p>
+        </section>
+      </main>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
