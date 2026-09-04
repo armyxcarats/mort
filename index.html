@@ -109,35 +109,46 @@
           <p class="eyebrow">Dress for the moment</p>
           <h2>What outfit should we wear?</h2>
 
-          <div class="outfit-grid" id="outfit-grid">
-            <button class="outfit-card" data-outfit="Cute Casual">
+          <div class="outfit-layout">
+            <div class="outfit-selection">
+              <div class="outfit-grid" id="outfit-grid">
+            <button class="outfit-card" data-outfit="Cute Casual" data-image="cute casual.png">
               <span class="emoji">💖</span>
               <span>Cute Casual</span>
             </button>
-            <button class="outfit-card" data-outfit="Dreamy Pastel">
+            <button class="outfit-card" data-outfit="Dreamy Pastel" data-image="dreamy pastel.png">
               <span class="emoji">🌸</span>
               <span>Dreamy Pastel</span>
             </button>
-            <button class="outfit-card" data-outfit="Cozy Chic">
+            <button class="outfit-card" data-outfit="Cozy Chic" data-image="cozy chic.png">
               <span class="emoji">🧣</span>
               <span>Cozy Chic</span>
             </button>
-            <button class="outfit-card" data-outfit="Dressy Date">
+            <button class="outfit-card" data-outfit="Dressy Date" data-image="dressy date.png">
               <span class="emoji">✨</span>
               <span>Dressy Date</span>
             </button>
-            <button class="outfit-card" data-outfit="Street Style">
+            <button class="outfit-card" data-outfit="Street Style" data-image="street style.jpg">
               <span class="emoji">🔥</span>
               <span>Street Style</span>
             </button>
-            <button class="outfit-card" data-outfit="Classic Romance">
+            <button class="outfit-card" data-outfit="Classic Romance" data-image="classic romance.jpg">
               <span class="emoji">🌹</span>
               <span>Classic Romance</span>
             </button>
+              </div>
+
+              <button id="finalize-btn" class="action-btn confirm-btn">Lock in the outfit</button>
+              <p id="final-message" class="final-message"></p>
           </div>
 
-          <button id="finalize-btn" class="action-btn confirm-btn">Lock in the outfit</button>
-          <p id="final-message" class="final-message"></p>
+            <aside class="outfit-preview" aria-live="polite">
+              <p class="outfit-preview-label">Your outfit mood</p>
+              <div id="outfit-preview-placeholder" class="outfit-preview-placeholder">Choose an outfit to see it here.</div>
+              <img id="outfit-preview-image" class="outfit-preview-image hidden" alt="Selected outfit preview" />
+              <strong id="outfit-preview-name" class="outfit-preview-name"></strong>
+            </aside>
+          </div>
         </section>
       </main>
     </div>

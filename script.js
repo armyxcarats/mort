@@ -19,6 +19,9 @@ const selectedDateText = document.getElementById('selected-date-text');
 const selectedTimeText = document.getElementById('selected-time-text');
 const wheelLabels = document.getElementById('wheel-labels');
 const outfitCards = document.querySelectorAll('.outfit-card');
+const outfitPreviewPlaceholder = document.getElementById('outfit-preview-placeholder');
+const outfitPreviewImage = document.getElementById('outfit-preview-image');
+const outfitPreviewName = document.getElementById('outfit-preview-name');
 const catTipYes = document.getElementById('cat-tip-yes');
 const catTipNo = document.getElementById('cat-tip-no');
 const pixelHearts = document.querySelectorAll('.pixel-heart');
@@ -436,6 +439,11 @@ outfitCards.forEach((card) => {
     outfitCards.forEach((item) => item.classList.remove('selected'));
     card.classList.add('selected');
     selectedOutfit = card.dataset.outfit;
+    outfitPreviewImage.src = encodeURI(card.dataset.image);
+    outfitPreviewImage.alt = `${selectedOutfit} outfit preview`;
+    outfitPreviewName.textContent = selectedOutfit;
+    outfitPreviewPlaceholder.classList.add('hidden');
+    outfitPreviewImage.classList.remove('hidden');
   });
 });
 
