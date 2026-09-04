@@ -47,9 +47,65 @@ body {
 }
 
 #login-screen {
-  max-width: 560px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding-top: 12px;
+}
+
+.login-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(300px, 0.85fr);
+  gap: 54px;
+  align-items: center;
+  text-align: left;
+}
+
+.login-copy {
+  padding: 18px 0;
+}
+
+.login-copy h1 {
+  max-width: 520px;
+}
+
+.login-copy .subtitle {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.trespasser-note {
+  display: grid;
+  gap: 8px;
+  max-width: 420px;
+  margin-top: 30px;
+  padding: 20px 22px;
+  border-left: 5px solid var(--pink-1);
+  border-radius: 0 18px 18px 0;
+  background: rgba(255, 255, 255, 0.48);
+  color: rgba(78, 45, 59, 0.78);
+  line-height: 1.5;
+}
+
+.trespasser-note strong {
+  color: var(--text);
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.2rem;
+}
+
+.login-access {
+  width: min(100%, 360px);
   margin: 0 auto;
   text-align: center;
+}
+
+.mort-image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border: 5px solid rgba(255, 255, 255, 0.86);
+  border-radius: 24px;
+  object-fit: cover;
+  box-shadow: 0 18px 30px rgba(197, 82, 128, 0.22);
 }
 
 #plan-screen {
@@ -68,7 +124,7 @@ body {
 }
 
 .login-hint {
-  margin: 0 auto 24px;
+  margin: 18px auto 24px;
   max-width: 440px;
   color: rgba(78, 45, 59, 0.78);
   line-height: 1.6;
@@ -120,6 +176,28 @@ body {
   font-size: 0.92rem;
   font-weight: 700;
   text-align: center;
+}
+
+@media (max-width: 760px) {
+  .login-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .login-copy {
+    text-align: center;
+  }
+
+  .login-copy .subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .trespasser-note {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+  }
 }
 
 /* Ensure only active screens are visible */

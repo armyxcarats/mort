@@ -17,21 +17,33 @@
 
       <main class="app-card">
         <section id="login-screen" class="screen active">
-          <p class="eyebrow">A little secret entrance</p>
-          <h1>Just for my favorite person 💖</h1>
-          <p class="subtitle">This website is only for my cutie, my baby, my sunshine till the end of time.</p>
-          <p class="login-hint">You can type any nickname you like. <strong>Hint: the password has 4 letters.</strong></p>
+          <div class="login-layout">
+            <div class="login-copy">
+              <p class="eyebrow">A little secret entrance</p>
+              <h1>Just for my favorite person 💖</h1>
+              <p class="subtitle">This website is only for my cutie, my baby, my sunshine till the end of time.</p>
+              <div class="trespasser-note">
+                <strong>You must look like this cutie to enter.</strong>
+                <span>If not, you might be a trespasser... but I will let it slide if you know the secret password.</span>
+              </div>
+            </div>
 
-          <form id="login-form" class="login-form">
-            <label for="nickname-input">Your nickname</label>
-            <input id="nickname-input" name="nickname" type="text" placeholder="Any nickname" autocomplete="off" required />
+            <div class="login-access">
+              <img class="mort-image" src="mort.jpg" alt="Your cutie guest pass" />
+              <p class="login-hint">You can type any nickname you like. <strong>Hint: the password has 4 letters.</strong></p>
 
-            <label for="password-input">Secret password</label>
-            <input id="password-input" name="password" type="password" placeholder="Password" autocomplete="off" required />
+              <form id="login-form" class="login-form">
+                <label for="nickname-input">Your nickname</label>
+                <input id="nickname-input" name="nickname" type="text" placeholder="Any nickname" autocomplete="off" required />
 
-            <button class="action-btn login-btn" type="submit">Open my surprise ✨</button>
-            <p id="login-message" class="login-message" role="alert" aria-live="polite"></p>
-          </form>
+                <label for="password-input">Secret password</label>
+                <input id="password-input" name="password" type="password" placeholder="Password" autocomplete="off" required />
+
+                <button class="action-btn login-btn" type="submit">Open my surprise ✨</button>
+                <p id="login-message" class="login-message" role="alert" aria-live="polite"></p>
+              </form>
+            </div>
+          </div>
         </section>
 
         <section id="invite-screen" class="screen">
