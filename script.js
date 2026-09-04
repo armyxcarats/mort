@@ -14,7 +14,9 @@ const wheel = document.getElementById('wheel');
 const wheelResult = document.getElementById('wheel-result');
 const finalMessage = document.getElementById('final-message');
 const datePicker = document.getElementById('date-picker');
+const timePicker = document.getElementById('time-picker');
 const selectedDateText = document.getElementById('selected-date-text');
+const selectedTimeText = document.getElementById('selected-time-text');
 const wheelLabels = document.getElementById('wheel-labels');
 const outfitCards = document.querySelectorAll('.outfit-card');
 const catTipYes = document.getElementById('cat-tip-yes');
@@ -376,6 +378,21 @@ datePicker.addEventListener('input', () => {
   }) : 'No date picked yet';
 
   selectedDateText.textContent = formattedDate;
+});
+
+timePicker.addEventListener('input', () => {
+  if (!timePicker.value) {
+    selectedTimeText.textContent = 'No time picked yet';
+    return;
+  }
+
+  const [hours, minutes] = timePicker.value.split(':').map(Number);
+  const time = new Date();
+  time.setHours(hours, minutes, 0, 0);
+  selectedTimeText.textContent = time.toLocaleTimeString(undefined, {
+    hour: 'numeric',
+    minute: '2-digit'
+  });
 });
 
 yesBtn.addEventListener('click', () => {

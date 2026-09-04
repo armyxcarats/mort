@@ -57,7 +57,6 @@
         </section>
 
         <section id="plan-screen" class="screen">
-          <video class="date-video" src="chu.mp4" autoplay muted loop playsinline aria-label="A sweet little video"></video>
           <p class="eyebrow">Perfect, let's plan it</p>
           <h2>When should we go?</h2>
 
@@ -68,10 +67,22 @@
                 <input id="date-picker" type="date" />
               </div>
 
+              <div class="date-picker-wrap">
+                <label for="time-picker">Pick a time</label>
+                <input id="time-picker" type="time" />
+              </div>
+
               <div class="picked-date-box">
                 <p>Chosen date</p>
                 <strong id="selected-date-text">No date picked yet</strong>
               </div>
+
+              <div class="picked-date-box">
+                <p>Chosen time</p>
+                <strong id="selected-time-text">No time picked yet</strong>
+              </div>
+
+              <video class="date-video" src="chu.mp4" autoplay muted loop playsinline aria-label="A sweet little video"></video>
             </div>
 
             <div class="wheel-section">
