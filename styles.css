@@ -176,6 +176,7 @@ h2 {
   position: relative;
   width: 48px;
   height: 48px;
+  filter: drop-shadow(2px 3px 0 rgba(175, 72, 110, 0.18));
   transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
@@ -200,21 +201,31 @@ h2 {
   position: absolute;
   width: 8px;
   height: 8px;
-  background: #e58eaa;
+  background: #e98eaa;
   content: "";
-  box-shadow: 0 8px #e58eaa, 0 16px #e58eaa, 0 24px #e58eaa, 0 32px #e58eaa;
+  box-shadow: 0 8px #e98eaa, 0 16px #e98eaa, 0 24px #e98eaa, 0 32px #e98eaa;
 }
 
 .pixel-heart-half.left::before {
   left: 8px;
   top: 0;
-  box-shadow: 0 8px #e58eaa, -8px 8px #e58eaa, 8px 8px #e58eaa, 0 16px #e58eaa, -8px 16px #e58eaa, 8px 16px #e58eaa, 0 24px #e58eaa, 8px 24px #e58eaa, 8px 32px #e58eaa;
+  box-shadow: 0 8px #e98eaa, -8px 8px #e98eaa, 8px 8px #e98eaa, 0 16px #e98eaa, -8px 16px #e98eaa, 8px 16px #e98eaa, 0 24px #e98eaa, 8px 24px #e98eaa, 8px 32px #e98eaa;
 }
 
 .pixel-heart-half.right::before {
   left: 8px;
   top: 0;
-  box-shadow: 0 8px #e58eaa, -8px 8px #e58eaa, 8px 8px #e58eaa, 0 16px #e58eaa, -8px 16px #e58eaa, 8px 16px #e58eaa, -8px 24px #e58eaa, 0 24px #e58eaa, -8px 32px #e58eaa;
+  box-shadow: 0 8px #e98eaa, -8px 8px #e98eaa, 8px 8px #e98eaa, 0 16px #e98eaa, -8px 16px #e98eaa, 8px 16px #e98eaa, -8px 24px #e98eaa, 0 24px #e98eaa, -8px 32px #e98eaa;
+}
+
+.pixel-heart-half::after {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 4px;
+  height: 4px;
+  background: #f8c4d2;
+  content: "";
 }
 
 .pixel-heart-half.gone {

@@ -224,6 +224,15 @@ function damagePixelHeart(clickNumber) {
   }
 }
 
+function restorePixelHearts() {
+  pixelHearts.forEach((heart) => {
+    heart.classList.remove('damaged', 'gone');
+    heart.querySelectorAll('.pixel-heart-half').forEach((half) => {
+      half.classList.remove('gone');
+    });
+  });
+}
+
 function positionCats() {
   const container = noBtn.parentElement;
   const containerRect = container.getBoundingClientRect();
@@ -356,6 +365,7 @@ datePicker.addEventListener('input', () => {
 });
 
 yesBtn.addEventListener('click', () => {
+  restorePixelHearts();
   heartBurst.classList.remove('active');
   void heartBurst.offsetWidth;
   heartBurst.classList.add('active');
