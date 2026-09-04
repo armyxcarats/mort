@@ -161,6 +161,72 @@ h2 {
   overflow: visible;
 }
 
+.pixel-hearts {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  z-index: 4;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  transform: translateX(-50%);
+}
+
+.pixel-heart {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.pixel-heart-half {
+  position: absolute;
+  top: 0;
+  width: 24px;
+  height: 48px;
+  background: transparent;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.pixel-heart-half.left {
+  left: 0;
+}
+
+.pixel-heart-half.right {
+  right: 0;
+}
+
+.pixel-heart-half::before {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #e58eaa;
+  content: "";
+  box-shadow: 0 8px #e58eaa, 0 16px #e58eaa, 0 24px #e58eaa, 0 32px #e58eaa;
+}
+
+.pixel-heart-half.left::before {
+  left: 8px;
+  top: 0;
+  box-shadow: 0 8px #e58eaa, -8px 8px #e58eaa, 8px 8px #e58eaa, 0 16px #e58eaa, -8px 16px #e58eaa, 8px 16px #e58eaa, 0 24px #e58eaa, 8px 24px #e58eaa, 8px 32px #e58eaa;
+}
+
+.pixel-heart-half.right::before {
+  left: 8px;
+  top: 0;
+  box-shadow: 0 8px #e58eaa, -8px 8px #e58eaa, 8px 8px #e58eaa, 0 16px #e58eaa, -8px 16px #e58eaa, 8px 16px #e58eaa, -8px 24px #e58eaa, 0 24px #e58eaa, -8px 32px #e58eaa;
+}
+
+.pixel-heart-half.gone {
+  opacity: 0;
+  transform: translateY(8px) scale(0.7);
+}
+
+.pixel-heart.gone {
+  opacity: 0;
+  transform: scale(0.65);
+}
+
 .heart-burst {
   position: absolute;
   inset: 0;
@@ -601,6 +667,14 @@ h2 {
 
   .choice-row {
     height: 150px;
+  }
+
+  .pixel-hearts {
+    gap: 8px;
+  }
+
+  .pixel-heart {
+    transform: scale(0.82);
   }
 
   .yes-btn {

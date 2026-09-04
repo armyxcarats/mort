@@ -19,6 +19,7 @@ const wheelLabels = document.getElementById('wheel-labels');
 const outfitCards = document.querySelectorAll('.outfit-card');
 const catTipYes = document.getElementById('cat-tip-yes');
 const catTipNo = document.getElementById('cat-tip-no');
+const pixelHearts = document.querySelectorAll('.pixel-heart');
 const loginForm = document.getElementById('login-form');
 const nicknameInput = document.getElementById('nickname-input');
 const passwordInput = document.getElementById('password-input');
@@ -209,6 +210,20 @@ function moveNoButton() {
   });
 }
 
+function damagePixelHeart(clickNumber) {
+  const heartIndex = Math.floor((clickNumber - 1) / 2);
+  const heart = pixelHearts[heartIndex];
+  if (!heart) return;
+
+  heart.classList.add('damaged');
+  if (clickNumber % 2 === 1) {
+    heart.querySelector('.pixel-heart-half.left').classList.add('gone');
+  } else {
+    heart.querySelector('.pixel-heart-half.right').classList.add('gone');
+    heart.classList.add('gone');
+  }
+}
+
 function positionCats() {
   const container = noBtn.parentElement;
   const containerRect = container.getBoundingClientRect();
@@ -289,6 +304,7 @@ function shatterNoButton() {
 
 function handleNoClick() {
   noCount += 1;
+  damagePixelHeart(noCount);
   const message = noMessages[Math.min(noCount - 1, noMessages.length - 1)];
   noBtn.textContent = message;
 
