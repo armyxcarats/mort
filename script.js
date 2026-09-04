@@ -31,6 +31,8 @@ const passwordInput = document.getElementById('password-input');
 const loginMessage = document.getElementById('login-message');
 const siteMusic = document.getElementById('site-music');
 const musicToggle = document.getElementById('music-toggle');
+const musicPanelToggle = document.getElementById('music-panel-toggle');
+const musicSettings = document.getElementById('music-settings');
 const musicVolume = document.getElementById('music-volume');
 
 const noMessages = [
@@ -50,8 +52,9 @@ siteMusic.volume = Number(musicVolume.value);
 
 function updateMusicButton() {
   const isPlaying = !siteMusic.paused;
-  musicToggle.textContent = isPlaying ? 'Pause music' : 'Play music';
   musicToggle.setAttribute('aria-label', isPlaying ? 'Pause music' : 'Play music');
+  musicToggle.textContent = isPlaying ? '🔊' : '🔇';
+  musicPanelToggle.textContent = isPlaying ? 'Pause music' : 'Play music';
 }
 
 function startMusic() {
@@ -138,12 +141,29 @@ musicToggle.addEventListener('click', () => {
   }
 });
 
+musicPanelToggle.addEventListener('click', () => {
+  if (siteMusic.paused) {
+    startMusic();
+  } else {
+    siteMusic.pause();
+    updateMusicButton();
+  }
+});
+
+musicToggle.addEventListener('click', () => {
+  const isOpen = musicSettings.classList.toggle('open');
+  musicSettings.setAttribute('aria-hidden', String(!isOpen));
+});
+
 musicVolume.addEventListener('input', () => {
   siteMusic.volume = Number(musicVolume.value);
 });
 
 siteMusic.addEventListener('play', updateMusicButton);
 siteMusic.addEventListener('pause', updateMusicButton);
+
+document.addEventListener('pointerdown', startMusic, { once: true });
+document.addEventListener('keydown', startMusic, { once: true });
 
 function moveNoButton() {
   const container = noBtn.parentElement;
