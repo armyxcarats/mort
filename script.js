@@ -1,3 +1,4 @@
+const loginScreen = document.getElementById('login-screen');
 const inviteScreen = document.getElementById('invite-screen');
 const planScreen = document.getElementById('plan-screen');
 const outfitScreen = document.getElementById('outfit-screen');
@@ -18,6 +19,10 @@ const wheelLabels = document.getElementById('wheel-labels');
 const outfitCards = document.querySelectorAll('.outfit-card');
 const catTipYes = document.getElementById('cat-tip-yes');
 const catTipNo = document.getElementById('cat-tip-no');
+const loginForm = document.getElementById('login-form');
+const nicknameInput = document.getElementById('nickname-input');
+const passwordInput = document.getElementById('password-input');
+const loginMessage = document.getElementById('login-message');
 
 const noMessages = [
   'Nope?',
@@ -69,10 +74,26 @@ function buildWheelLabels() {
 }
 
 function showScreen(screen) {
-  [inviteScreen, planScreen, outfitScreen].forEach((element) => {
+  [loginScreen, inviteScreen, planScreen, outfitScreen].forEach((element) => {
     element.classList.toggle('active', element === screen);
   });
 }
+
+loginForm.addEventListener('submit', (event) => {
+  event.preventDefault();
+
+  const nickname = nicknameInput.value.trim().toLowerCase();
+  const password = passwordInput.value;
+
+  if (nickname === 'baby' && password === 'mort') {
+    loginMessage.textContent = '';
+    showScreen(inviteScreen);
+    return;
+  }
+
+  loginMessage.textContent = 'Hmm... that is not quite right, my love. Try your 4-letter nickname and the secret password.';
+  passwordInput.select();
+});
 
 function moveNoButton() {
   const container = noBtn.parentElement;

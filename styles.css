@@ -46,6 +46,66 @@ body {
   text-align: center;
 }
 
+#login-screen {
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.login-hint {
+  margin: 0 auto 24px;
+  max-width: 440px;
+  color: rgba(78, 45, 59, 0.78);
+  line-height: 1.6;
+}
+
+.login-form {
+  display: grid;
+  gap: 10px;
+  max-width: 360px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.login-form label {
+  margin-top: 8px;
+  color: rgba(78, 45, 59, 0.9);
+  font-weight: 700;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 15px 16px;
+  border: 2px solid rgba(255, 111, 145, 0.2);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.72);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+}
+
+.login-form input:focus {
+  border-color: rgba(255, 111, 145, 0.7);
+  box-shadow: 0 0 0 4px rgba(255, 111, 145, 0.12);
+}
+
+.login-btn {
+  margin-top: 14px;
+  padding: 17px 24px;
+  background: linear-gradient(135deg, var(--pink-1), var(--pink-2));
+  box-shadow: 0 18px 26px rgba(255, 79, 163, 0.32);
+  color: var(--white);
+}
+
+.login-message {
+  min-height: 24px;
+  margin: 6px 0 0;
+  color: #b33e68;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-align: center;
+}
+
 /* Ensure only active screens are visible */
 .screen { display: none; }
 .screen.active { display: block; }

@@ -16,7 +16,25 @@
       <div class="glow glow-two"></div>
 
       <main class="app-card">
-        <section id="invite-screen" class="screen active">
+        <section id="login-screen" class="screen active">
+          <p class="eyebrow">A little secret entrance</p>
+          <h1>Just for my favorite person 💖</h1>
+          <p class="subtitle">This website is only for my cutie, my baby, my sunshine till the end of time.</p>
+          <p class="login-hint">Log in using the nickname I gave you. <strong>Hint: it has 4 letters.</strong></p>
+
+          <form id="login-form" class="login-form">
+            <label for="nickname-input">Your nickname</label>
+            <input id="nickname-input" name="nickname" type="text" placeholder="Four-letter nickname" autocomplete="off" required />
+
+            <label for="password-input">Secret password</label>
+            <input id="password-input" name="password" type="password" placeholder="Password" autocomplete="off" required />
+
+            <button class="action-btn login-btn" type="submit">Open my surprise ✨</button>
+            <p id="login-message" class="login-message" role="alert" aria-live="polite"></p>
+          </form>
+        </section>
+
+        <section id="invite-screen" class="screen">
           <p class="eyebrow">A tiny question baby...</p>
           <h1>Will you go on a date with me?</h1>
           <p class="subtitle">I picked the best seat, the cutest plan, and a little bit of courage for this one.</p>
