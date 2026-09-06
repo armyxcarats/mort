@@ -121,7 +121,7 @@ loginForm.addEventListener('submit', (event) => {
   const nickname = nicknameInput.value.trim().toLowerCase();
   const password = passwordInput.value;
 
-  if (nickname && password === 'mort') {
+  if (nickname && password === '6767') {
     loginMessage.textContent = '';
     startMusic();
     showScreen(inviteScreen);

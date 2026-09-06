@@ -121,6 +121,7 @@ body {
   border-radius: 18px;
   object-fit: cover;
   box-shadow: 0 12px 24px rgba(197, 82, 128, 0.2);
+  grid-column: 1 / -1;
 }
 
 .login-hint {
@@ -578,51 +579,102 @@ h2 {
 
 .plan-layout {
   display: grid;
-  grid-template-columns: minmax(240px, 0.85fr) minmax(300px, 1.15fr);
+  grid-template-columns: minmax(230px, 0.9fr) minmax(320px, 1.1fr);
   gap: 26px;
-  align-items: center;
+  align-items: stretch;
   margin-top: 30px;
 }
 
 .date-column {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  gap: 20px;
-  padding: 22px 18px 18px;
-  background: rgba(255, 255, 255, 0.4);
-  border-radius: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px 18px;
+  align-content: start;
+  padding: 18px 16px 16px;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 26px;
   border: 1px solid rgba(255, 111, 145, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), 0 18px 30px rgba(197, 82, 128, 0.08);
+  min-height: 500px;
 }
 
 .date-picker-wrap {
   width: 100%;
   text-align: left;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  padding: 6px 0;
+}
+
+.date-picker-wrap:nth-child(1),
+.date-picker-wrap:nth-child(2) {
+  grid-column: span 1;
+}
+
+.date-picker-wrap:hover {
+  transform: translateY(-2px);
 }
 
 .date-picker-wrap label {
-  display: block;
-  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
   font-weight: 700;
   color: rgba(78, 45, 59, 0.9);
+  font-size: 1.08rem;
+  min-height: 32px;
 }
 
-#date-picker {
+.date-picker-wrap label::before {
+  content: "💗";
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+#date-picker,
+#time-picker {
   width: 100%;
-  padding: 16px 18px;
+  padding: 14px 16px;
   font-size: 1rem;
-  border: 2px solid rgba(255, 111, 145, 0.2);
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.65);
+  border: 2px solid rgba(255, 111, 145, 0.18);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.72);
   color: var(--text);
+  box-shadow: inset 0 1px 2px rgba(255,255,255,0.75);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  min-height: 60px;
+}
+
+#date-picker:focus,
+#time-picker:focus {
+  border-color: rgba(255, 111, 145, 0.7);
+  box-shadow: 0 0 0 5px rgba(255, 111, 145, 0.12);
+  outline: none;
+  transform: scale(1.01);
+}
+
+#date-picker::-webkit-calendar-picker-indicator,
+#time-picker::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  filter: saturate(0.6) brightness(0.8);
+  opacity: 0.9;
 }
 
 .picked-date-box {
+  grid-column: span 1;
   background: linear-gradient(135deg, rgba(255, 219, 233, 0.8), rgba(255, 246, 250, 0.9));
   border-radius: 18px;
-  padding: 18px 16px;
+  padding: 16px 14px;
   text-align: left;
   border: 1px solid rgba(255, 111, 145, 0.12);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.7);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  min-height: 92px;
+}
+
+.picked-date-box:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 20px rgba(197, 82, 128, 0.08);
 }
 
 .picked-date-box p {
@@ -643,24 +695,26 @@ h2 {
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: stretch;
+  width: min(100%, 520px);
 }
 
 .wheel-prompt {
-  width: min(100%, 520px);
-  margin: 0 auto 18px;
+  width: 100%;
+  margin: 0 0 18px;
   color: var(--text);
   font-family: "Fredoka", sans-serif;
-  font-size: clamp(1.8rem, 3vw, 2.6rem);
+  font-size: clamp(2.1rem, 2.6vw, 3rem);
   font-weight: 600;
   line-height: 1.1;
-  text-align: center;
+  text-align: left;
+  letter-spacing: -0.02em;
 }
 
 .wheel-stage {
   position: relative;
-  width: min(100%, 300px);
-  height: 300px;
+  width: min(100%, 360px);
+  height: 360px;
   margin: 0 auto 24px;
   display: grid;
   place-items: center;
@@ -671,8 +725,8 @@ h2 {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  border: 12px solid rgba(255, 255, 255, 0.8);
-  box-shadow: 0 25px 40px rgba(112, 61, 94, 0.12);
+  border: 14px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 28px 44px rgba(112, 61, 94, 0.12), 0 0 0 8px rgba(255, 255, 255, 0.18);
   background: conic-gradient(
     #ff9ec5 0 10%,
     #ffd2a8 10% 20%,
