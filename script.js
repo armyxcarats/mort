@@ -29,6 +29,8 @@ const loginForm = document.getElementById('login-form');
 const nicknameInput = document.getElementById('nickname-input');
 const passwordInput = document.getElementById('password-input');
 const loginMessage = document.getElementById('login-message');
+const wrongPasswordPopup = document.getElementById('wrong-password-popup');
+const wrongPasswordVideo = document.getElementById('wrong-password-video');
 const siteMusic = document.getElementById('site-music');
 const musicToggle = document.getElementById('music-toggle');
 const musicPanelToggle = document.getElementById('music-panel-toggle');
@@ -73,6 +75,49 @@ const dateIdeas = [
   'Beach Date',
   'Ice Cream Date'
 ];
+
+const wrongPasswordVideos = ['dum1.mp4', 'dum2.mp4', 'dum3.mp4', 'dum4.mp4'];
+let wrongPasswordQueue = [];
+
+function shuffleArray(items) {
+  const array = [...items];
+  for (let i = array.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+}
+
+function getNextWrongPasswordVideo() {
+  if (wrongPasswordQueue.length === 0) {
+    wrongPasswordQueue = shuffleArray(wrongPasswordVideos);
+  }
+
+  return wrongPasswordQueue.shift();
+}
+
+function showWrongPasswordPopup() {
+  const nextVideo = getNextWrongPasswordVideo();
+  if (!nextVideo || !wrongPasswordPopup || !wrongPasswordVideo) {
+    return;
+  }
+
+  wrongPasswordVideo.src = nextVideo;
+  wrongPasswordVideo.muted = true;
+  wrongPasswordVideo.currentTime = 0;
+  wrongPasswordPopup.classList.remove('hidden');
+  wrongPasswordPopup.setAttribute('aria-hidden', 'false');
+
+  wrongPasswordVideo.play().catch(() => {});
+
+  window.clearTimeout(showWrongPasswordPopup.closeTimer);
+  showWrongPasswordPopup.closeTimer = window.setTimeout(() => {
+    wrongPasswordPopup.classList.add('hidden');
+    wrongPasswordPopup.setAttribute('aria-hidden', 'true');
+    wrongPasswordVideo.pause();
+    wrongPasswordVideo.currentTime = 0;
+  }, 2800);
+}
 
 const wheelSegments = dateIdeas.length;
 let noCount = 0;
@@ -128,6 +173,7 @@ loginForm.addEventListener('submit', (event) => {
     return;
   }
 
+  showWrongPasswordPopup();
   loginMessage.textContent = 'Wrong password, either ur not my baby or u just a hacker';
   passwordInput.select();
 });
