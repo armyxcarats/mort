@@ -579,9 +579,9 @@ h2 {
 
 .plan-layout {
   display: grid;
-  grid-template-columns: minmax(230px, 0.9fr) minmax(320px, 1.1fr);
+  grid-template-columns: minmax(230px, 0.9fr) minmax(340px, 1.25fr);
   gap: 26px;
-  align-items: stretch;
+  align-items: center;
   margin-top: 30px;
 }
 
@@ -695,8 +695,9 @@ h2 {
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  align-items: stretch;
-  width: min(100%, 520px);
+  align-items: center;
+  width: min(100%, 600px);
+  margin-left: 18px;
 }
 
 .wheel-prompt {
@@ -704,17 +705,18 @@ h2 {
   margin: 0 0 18px;
   color: var(--text);
   font-family: "Fredoka", sans-serif;
-  font-size: clamp(2.1rem, 2.6vw, 3rem);
+  font-size: clamp(2.2rem, 3vw, 3.4rem);
   font-weight: 600;
-  line-height: 1.1;
+  line-height: 1.08;
   text-align: left;
   letter-spacing: -0.02em;
+  max-width: 560px;
 }
 
 .wheel-stage {
   position: relative;
-  width: min(100%, 360px);
-  height: 360px;
+  width: min(100%, 430px);
+  height: 430px;
   margin: 0 auto 24px;
   display: grid;
   place-items: center;
