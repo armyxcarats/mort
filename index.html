@@ -130,27 +130,27 @@
           <div class="outfit-layout">
             <div class="outfit-selection">
               <div class="outfit-grid" id="outfit-grid">
-            <button class="outfit-card" data-outfit="Cute Casual" data-image="cute casual.png">
+            <button class="outfit-card" data-outfit="Cute Casual" data-image="cute casual.png" data-gallery="cute casual.png">
               <span class="emoji">💖</span>
               <span>Cute Casual</span>
             </button>
-            <button class="outfit-card" data-outfit="Dreamy Pastel" data-image="dreamy pastel.png">
+            <button class="outfit-card" data-outfit="Dreamy Pastel" data-image="dreamy pastel.png" data-gallery="dreamy pastel.png">
               <span class="emoji">🌸</span>
               <span>Dreamy Pastel</span>
             </button>
-            <button class="outfit-card" data-outfit="Cozy Chic" data-image="cozy chic.png">
+            <button class="outfit-card" data-outfit="Cozy Chic" data-image="cozy chic.png" data-gallery="cozy chic.png">
               <span class="emoji">🧣</span>
               <span>Cozy Chic</span>
             </button>
-            <button class="outfit-card" data-outfit="Dressy Date" data-image="dressy date.png">
+            <button class="outfit-card" data-outfit="Dressy Date" data-image="dressy date.png" data-gallery="dressy date.png">
               <span class="emoji">✨</span>
               <span>Dressy Date</span>
             </button>
-            <button class="outfit-card" data-outfit="Street Style" data-image="street style.jpg">
+            <button class="outfit-card" data-outfit="Street Style" data-image="street style.jpg" data-gallery="street style.jpg">
               <span class="emoji">🔥</span>
               <span>Street Style</span>
             </button>
-            <button class="outfit-card" data-outfit="Classic Romance" data-image="classic romance.jpg">
+            <button class="outfit-card" data-outfit="Classic Romance" data-image="classic romance.jpg" data-gallery="classic romance.jpg">
               <span class="emoji">🌹</span>
               <span>Classic Romance</span>
             </button>
@@ -162,8 +162,14 @@
 
             <aside class="outfit-preview" aria-live="polite">
               <p class="outfit-preview-label">Your outfit mood</p>
-              <div id="outfit-preview-placeholder" class="outfit-preview-placeholder">Choose an outfit to see it here.</div>
-              <img id="outfit-preview-image" class="outfit-preview-image hidden" alt="Selected outfit preview" />
+              <div class="outfit-preview-stage" id="outfit-preview-stage">
+                <button id="outfit-prev" class="preview-nav preview-prev" type="button" aria-label="Previous outfit photo">‹</button>
+                <div class="outfit-preview-frame">
+                  <div id="outfit-preview-placeholder" class="outfit-preview-placeholder">Choose an outfit to see it here.</div>
+                  <img id="outfit-preview-image" class="outfit-preview-image hidden" alt="Selected outfit preview" />
+                </div>
+                <button id="outfit-next" class="preview-nav preview-next" type="button" aria-label="Next outfit photo">›</button>
+              </div>
               <strong id="outfit-preview-name" class="outfit-preview-name"></strong>
             </aside>
           </div>

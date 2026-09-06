@@ -22,6 +22,9 @@ const outfitCards = document.querySelectorAll('.outfit-card');
 const outfitPreviewPlaceholder = document.getElementById('outfit-preview-placeholder');
 const outfitPreviewImage = document.getElementById('outfit-preview-image');
 const outfitPreviewName = document.getElementById('outfit-preview-name');
+const outfitPreviewStage = document.getElementById('outfit-preview-stage');
+const outfitPrevBtn = document.getElementById('outfit-prev');
+const outfitNextBtn = document.getElementById('outfit-next');
 const catTipYes = document.getElementById('cat-tip-yes');
 const catTipNo = document.getElementById('cat-tip-no');
 const pixelHearts = document.querySelectorAll('.pixel-heart');
@@ -124,6 +127,9 @@ let noCount = 0;
 let wheelRotation = 0;
 let selectedDateIdea = '';
 let selectedOutfit = '';
+let currentOutfitGallery = [];
+let currentOutfitIndex = 0;
+let swipeStartX = 0;
 let noScale = 1; // shrinks each No click
 let yesScale = 1; // grows each No click
 
@@ -532,18 +538,69 @@ loveDateBtn.addEventListener('click', () => {
   showScreen(outfitScreen);
 });
 
+function getGalleryForCard(card) {
+  const list = card.dataset.gallery ? card.dataset.gallery.split('|') : [card.dataset.image];
+  return list.map((item) => item.trim()).filter(Boolean);
+}
+
+function renderOutfitPreview() {
+  if (!currentOutfitGallery.length) {
+    outfitPreviewPlaceholder.classList.remove('hidden');
+    outfitPreviewImage.classList.add('hidden');
+    outfitPreviewImage.removeAttribute('src');
+    return;
+  }
+
+  const currentImage = currentOutfitGallery[currentOutfitIndex] || currentOutfitGallery[0];
+  outfitPreviewImage.src = encodeURI(currentImage);
+  outfitPreviewImage.alt = `${selectedOutfit} outfit preview`;
+  outfitPreviewName.textContent = selectedOutfit;
+  outfitPreviewPlaceholder.classList.add('hidden');
+  outfitPreviewImage.classList.remove('hidden');
+}
+
+function showOutfitGallery(card) {
+  const gallery = getGalleryForCard(card);
+  currentOutfitGallery = gallery.length ? gallery : [card.dataset.image];
+  currentOutfitIndex = 0;
+  selectedOutfit = card.dataset.outfit;
+  renderOutfitPreview();
+}
+
+function moveOutfitGallery(direction) {
+  if (!currentOutfitGallery.length) return;
+
+  currentOutfitIndex = (currentOutfitIndex + direction + currentOutfitGallery.length) % currentOutfitGallery.length;
+  renderOutfitPreview();
+}
+
 outfitCards.forEach((card) => {
   card.addEventListener('click', () => {
     outfitCards.forEach((item) => item.classList.remove('selected'));
     card.classList.add('selected');
-    selectedOutfit = card.dataset.outfit;
-    outfitPreviewImage.src = encodeURI(card.dataset.image);
-    outfitPreviewImage.alt = `${selectedOutfit} outfit preview`;
-    outfitPreviewName.textContent = selectedOutfit;
-    outfitPreviewPlaceholder.classList.add('hidden');
-    outfitPreviewImage.classList.remove('hidden');
+    showOutfitGallery(card);
   });
 });
+
+outfitPrevBtn.addEventListener('click', () => moveOutfitGallery(-1));
+outfitNextBtn.addEventListener('click', () => moveOutfitGallery(1));
+
+if (outfitPreviewStage) {
+  outfitPreviewStage.addEventListener('pointerdown', (event) => {
+    swipeStartX = event.clientX;
+  });
+
+  outfitPreviewStage.addEventListener('pointerup', (event) => {
+    if (swipeStartX === null || !currentOutfitGallery.length) return;
+
+    const diff = event.clientX - swipeStartX;
+    if (Math.abs(diff) > 35) {
+      moveOutfitGallery(diff < 0 ? 1 : -1);
+    }
+
+    swipeStartX = 0;
+  });
+}
 
 finalizeBtn.addEventListener('click', () => {
   if (!selectedOutfit) {

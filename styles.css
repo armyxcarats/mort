@@ -918,6 +918,30 @@ h2 {
   text-transform: uppercase;
 }
 
+.outfit-preview-stage {
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr) 42px;
+  align-items: center;
+  gap: 10px;
+}
+
+.preview-nav {
+  width: 42px;
+  height: 42px;
+  border: 0;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ffb8d0, #ff8ab7);
+  color: white;
+  font-size: 2rem;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 12px 22px rgba(255, 111, 145, 0.18);
+}
+
+.outfit-preview-frame {
+  min-height: 420px;
+}
+
 .outfit-preview-placeholder {
   min-height: 340px;
   display: grid;
