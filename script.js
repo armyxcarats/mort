@@ -2,6 +2,7 @@ const loginScreen = document.getElementById('login-screen');
 const inviteScreen = document.getElementById('invite-screen');
 const planScreen = document.getElementById('plan-screen');
 const outfitScreen = document.getElementById('outfit-screen');
+const flowerScreen = document.getElementById('flower-screen');
 
 const yesBtn = document.getElementById('yes-btn');
 const noBtn = document.getElementById('no-btn');
@@ -39,6 +40,10 @@ const musicToggle = document.getElementById('music-toggle');
 const musicPanelToggle = document.getElementById('music-panel-toggle');
 const musicSettings = document.getElementById('music-settings');
 const musicVolume = document.getElementById('music-volume');
+const flowers = document.querySelectorAll('.flower');
+const flowerNote = document.getElementById('flower-note');
+const flowerNoteTitle = document.getElementById('flower-note-title');
+const flowerNoteMessage = document.getElementById('flower-note-message');
 
 const noMessages = [
   'Nope?',
@@ -133,6 +138,16 @@ let swipeStartX = 0;
 let noScale = 1; // shrinks each No click
 let yesScale = 1; // grows each No click
 
+const flowerMessages = {
+  Rose: 'You make my heart feel soft, brave, and completely at home. 🌹',
+  Sunflower: 'You bring so much light into my days that even the sunshine gets jealous. 🌻',
+  Tulip: 'You are my favorite kind of lovely: sweet, surprising, and impossible not to smile about. 🌷',
+  'Cherry blossom': 'You make ordinary moments feel delicate, beautiful, and worth remembering. 🌸',
+  Daisy: 'You make everything feel lighter, warmer, and a little more joyful. 🌼',
+  Hibiscus: 'There is something bright and unforgettable about you, just like this flower. 🌺',
+  'Bouquet sparkle': 'Every beautiful thing in this bouquet is still trying to catch up with you. 💐'
+};
+
 function buildWheelLabels() {
   const segmentAngle = 360 / dateIdeas.length;
 
@@ -157,7 +172,7 @@ function keepWheelLabelsReadable() {
 }
 
 function showScreen(screen) {
-  [loginScreen, inviteScreen, planScreen, outfitScreen].forEach((element) => {
+  [loginScreen, inviteScreen, planScreen, outfitScreen, flowerScreen].forEach((element) => {
     element.classList.toggle('active', element === screen);
   });
 
@@ -612,6 +627,19 @@ finalizeBtn.addEventListener('click', () => {
   finalizeBtn.textContent = 'Date locked in!';
   finalizeBtn.disabled = true;
   finalizeBtn.style.opacity = '0.85';
+  showScreen(flowerScreen);
+});
+
+flowers.forEach((flower) => {
+  flower.addEventListener('click', () => {
+    flowers.forEach((item) => item.classList.remove('selected'));
+    flower.classList.add('selected');
+
+    const flowerName = flower.dataset.flower;
+    flowerNoteTitle.textContent = flowerName;
+    flowerNoteMessage.textContent = flowerMessages[flowerName];
+    flowerNote.classList.add('revealed');
+  });
 });
 
 window.addEventListener('DOMContentLoaded', () => {

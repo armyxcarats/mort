@@ -1014,6 +1014,179 @@ h2 {
   color: #8b3360;
 }
 
+.flower-subtitle {
+  margin-bottom: 18px;
+}
+
+.flower-layout {
+  display: grid;
+  grid-template-columns: minmax(360px, 1.1fr) minmax(250px, 0.75fr);
+  align-items: center;
+  gap: 42px;
+  width: min(100%, 900px);
+  margin: 28px auto 0;
+}
+
+.bouquet-wrap {
+  position: relative;
+  min-height: 440px;
+  display: grid;
+  place-items: center;
+  border-radius: 32px;
+  background: radial-gradient(circle at 50% 35%, rgba(255, 255, 255, 0.76), rgba(255, 222, 235, 0.42) 58%, rgba(255, 194, 218, 0.22));
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.8), 0 22px 34px rgba(197, 82, 128, 0.1);
+}
+
+.bouquet-ribbon {
+  position: absolute;
+  bottom: 28px;
+  left: 50%;
+  z-index: 2;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ff9fc5, #ff6f9d);
+  color: #fff;
+  font-family: "Fredoka", sans-serif;
+  font-size: 0.9rem;
+  transform: translateX(-50%) rotate(-3deg);
+  box-shadow: 0 10px 18px rgba(255, 111, 145, 0.2);
+}
+
+.bouquet {
+  position: relative;
+  width: min(100%, 390px);
+  height: 380px;
+}
+
+.bouquet::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 35px;
+  width: 170px;
+  height: 70px;
+  border-radius: 50%;
+  background: rgba(172, 91, 117, 0.12);
+  filter: blur(10px);
+  transform: translateX(-50%);
+}
+
+.bouquet-stem {
+  position: absolute;
+  left: 50%;
+  bottom: 65px;
+  width: 5px;
+  height: 190px;
+  border-radius: 999px;
+  background: linear-gradient(#75b982, #3d9162);
+  transform-origin: bottom center;
+  z-index: 1;
+}
+
+.stem-one { transform: rotate(-28deg); }
+.stem-two { transform: rotate(-17deg); height: 205px; }
+.stem-three { transform: rotate(-7deg); height: 215px; }
+.stem-four { transform: rotate(7deg); height: 215px; }
+.stem-five { transform: rotate(17deg); height: 205px; }
+.stem-six { transform: rotate(28deg); }
+.stem-seven { transform: rotate(0deg); height: 225px; }
+
+.flower {
+  position: absolute;
+  z-index: 3;
+  width: 74px;
+  height: 74px;
+  padding: 0;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.58);
+  cursor: pointer;
+  font-size: 3.2rem;
+  line-height: 1;
+  filter: drop-shadow(0 10px 9px rgba(135, 61, 91, 0.14));
+  transition: transform 0.2s ease, filter 0.2s ease, background 0.2s ease;
+}
+
+.flower:hover,
+.flower:focus-visible {
+  transform: translateY(-6px) scale(1.08);
+  outline: none;
+  filter: drop-shadow(0 14px 12px rgba(135, 61, 91, 0.2));
+}
+
+.flower.selected {
+  background: rgba(255, 255, 255, 0.94);
+  box-shadow: 0 0 0 5px rgba(255, 111, 145, 0.24), 0 14px 20px rgba(255, 111, 145, 0.2);
+  transform: translateY(-7px) scale(1.1);
+}
+
+.flower-one { left: 18%; top: 26%; }
+.flower-two { left: 38%; top: 10%; }
+.flower-three { left: 61%; top: 22%; }
+.flower-four { left: 7%; top: 48%; }
+.flower-five { left: 39%; top: 37%; }
+.flower-six { left: 72%; top: 47%; }
+.flower-seven { left: 39%; top: 61%; }
+
+.flower-note {
+  position: relative;
+  padding: 34px 28px 30px;
+  border: 1px solid rgba(255, 111, 145, 0.18);
+  border-radius: 18px 24px 20px 28px;
+  background: rgba(255, 253, 247, 0.82);
+  box-shadow: 0 20px 30px rgba(137, 72, 99, 0.12);
+  text-align: left;
+  transform: rotate(2deg);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.flower-note::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 50%;
+  width: 62px;
+  height: 20px;
+  border-radius: 4px;
+  background: rgba(255, 164, 193, 0.72);
+  transform: translateX(-50%) rotate(-4deg);
+}
+
+.flower-note.revealed {
+  transform: rotate(-1deg) translateY(-4px);
+  box-shadow: 0 24px 36px rgba(137, 72, 99, 0.17);
+}
+
+.flower-note-pin {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 1.7rem;
+}
+
+.flower-note-label {
+  margin: 0 0 12px;
+  color: #a55a79;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.13rem;
+  text-transform: uppercase;
+}
+
+.flower-note strong {
+  display: block;
+  margin-bottom: 12px;
+  color: var(--text);
+  font-family: "Fredoka", sans-serif;
+  font-size: 1.5rem;
+}
+
+.flower-note p:last-child {
+  margin: 0;
+  color: rgba(78, 45, 59, 0.78);
+  font-size: 1.02rem;
+  line-height: 1.65;
+}
+
 @media (max-width: 760px) {
   .plan-layout {
     grid-template-columns: 1fr;
@@ -1037,6 +1210,20 @@ h2 {
   .outfit-preview-image {
     min-height: 240px;
     height: 300px;
+  }
+
+  .flower-layout {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .bouquet-wrap {
+    min-height: 380px;
+  }
+
+  .flower-note {
+    width: min(100%, 420px);
+    margin: 0 auto;
   }
 }
 
