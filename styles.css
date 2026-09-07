@@ -1019,17 +1019,15 @@ h2 {
 }
 
 .flower-layout {
-  display: grid;
-  grid-template-columns: minmax(360px, 1.1fr) minmax(250px, 0.75fr);
-  align-items: center;
-  gap: 42px;
-  width: min(100%, 900px);
+  display: block;
+  width: min(100%, 650px);
   margin: 28px auto 0;
 }
 
 .bouquet-wrap {
   position: relative;
-  min-height: 440px;
+  width: 100%;
+  min-height: 560px;
   display: grid;
   place-items: center;
   border-radius: 32px;
@@ -1153,65 +1151,6 @@ h2 {
 .flower-six { left: 43%; top: 46%; }
 .flower-seven { left: 68%; top: 49%; }
 
-.flower-note {
-  position: relative;
-  padding: 34px 28px 30px;
-  border: 1px solid rgba(255, 111, 145, 0.18);
-  border-radius: 18px 24px 20px 28px;
-  background: rgba(255, 253, 247, 0.82);
-  box-shadow: 0 20px 30px rgba(137, 72, 99, 0.12);
-  text-align: left;
-  transform: rotate(2deg);
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.flower-note::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  width: 62px;
-  height: 20px;
-  border-radius: 4px;
-  background: rgba(255, 164, 193, 0.72);
-  transform: translateX(-50%) rotate(-4deg);
-}
-
-.flower-note.revealed {
-  transform: rotate(-1deg) translateY(-4px);
-  box-shadow: 0 24px 36px rgba(137, 72, 99, 0.17);
-}
-
-.flower-note-pin {
-  display: block;
-  margin-bottom: 14px;
-  font-size: 1.7rem;
-}
-
-.flower-note-label {
-  margin: 0 0 12px;
-  color: #a55a79;
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.13rem;
-  text-transform: uppercase;
-}
-
-.flower-note strong {
-  display: block;
-  margin-bottom: 12px;
-  color: var(--text);
-  font-family: "Fredoka", sans-serif;
-  font-size: 1.5rem;
-}
-
-.flower-note p:last-child {
-  margin: 0;
-  color: rgba(78, 45, 59, 0.78);
-  font-size: 1.02rem;
-  line-height: 1.65;
-}
-
 @media (max-width: 760px) {
   .plan-layout {
     grid-template-columns: 1fr;
@@ -1237,18 +1176,8 @@ h2 {
     height: 300px;
   }
 
-  .flower-layout {
-    grid-template-columns: 1fr;
-    gap: 24px;
-  }
-
   .bouquet-wrap {
-    min-height: 380px;
-  }
-
-  .flower-note {
-    width: min(100%, 420px);
-    margin: 0 auto;
+    min-height: 420px;
   }
 }
 

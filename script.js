@@ -41,9 +41,6 @@ const musicPanelToggle = document.getElementById('music-panel-toggle');
 const musicSettings = document.getElementById('music-settings');
 const musicVolume = document.getElementById('music-volume');
 const flowers = document.querySelectorAll('.flower');
-const flowerNote = document.getElementById('flower-note');
-const flowerNoteTitle = document.getElementById('flower-note-title');
-const flowerNoteMessage = document.getElementById('flower-note-message');
 const bouquetCanvas = document.getElementById('bouquet-canvas');
 const selectedFlowerPop = document.getElementById('selected-flower-pop');
 
@@ -666,10 +663,6 @@ flowers.forEach((flower) => {
     flower.classList.add('selected');
 
     const flowerName = flower.dataset.flower;
-    flowerNoteTitle.textContent = flowerName;
-    flowerNoteMessage.textContent = flowerMessages[flowerName];
-    flowerNote.classList.add('revealed');
-
     selectedFlowerPop.textContent = `${flowerEmojis[flowerName]} ${flowerName}`;
     selectedFlowerPop.style.left = `${flower.offsetLeft + flower.offsetWidth / 2}px`;
     selectedFlowerPop.style.top = `${Math.max(4, flower.offsetTop - 42)}px`;
