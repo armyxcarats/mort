@@ -161,7 +161,7 @@ function renderPixelBouquet() {
   if (!bouquetCanvas) return;
 
   const image = new Image();
-  image.src = 'bouquet.jpg';
+  image.src = 'flowers.png';
   image.addEventListener('load', () => {
     const pixelWidth = 120;
     const pixelHeight = Math.round(pixelWidth * image.naturalHeight / image.naturalWidth);
@@ -666,6 +666,8 @@ flowers.forEach((flower) => {
     selectedFlowerPop.textContent = `${flowerEmojis[flowerName]} ${flowerName}`;
     selectedFlowerPop.style.left = `${flower.offsetLeft + flower.offsetWidth / 2}px`;
     selectedFlowerPop.style.top = `${Math.max(4, flower.offsetTop - 42)}px`;
+    selectedFlowerPop.classList.remove('revealed');
+    void selectedFlowerPop.offsetWidth;
     selectedFlowerPop.classList.add('revealed');
   });
 });
