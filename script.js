@@ -44,6 +44,8 @@ const flowers = document.querySelectorAll('.flower');
 const flowerNote = document.getElementById('flower-note');
 const flowerNoteTitle = document.getElementById('flower-note-title');
 const flowerNoteMessage = document.getElementById('flower-note-message');
+const bouquetCanvas = document.getElementById('bouquet-canvas');
+const selectedFlowerPop = document.getElementById('selected-flower-pop');
 
 const noMessages = [
   'Nope?',
@@ -147,6 +149,34 @@ const flowerMessages = {
   Hibiscus: 'There is something bright and unforgettable about you, just like this flower. 🌺',
   'Bouquet sparkle': 'Every beautiful thing in this bouquet is still trying to catch up with you. 💐'
 };
+
+const flowerEmojis = {
+  Rose: '🌹',
+  Sunflower: '🌻',
+  Tulip: '🌷',
+  'Cherry blossom': '🌸',
+  Daisy: '🌼',
+  Hibiscus: '🌺',
+  'Bouquet sparkle': '💐'
+};
+
+function renderPixelBouquet() {
+  if (!bouquetCanvas) return;
+
+  const image = new Image();
+  image.src = 'bouquet.jpg';
+  image.addEventListener('load', () => {
+    const pixelWidth = 120;
+    const pixelHeight = Math.round(pixelWidth * image.naturalHeight / image.naturalWidth);
+    bouquetCanvas.width = pixelWidth;
+    bouquetCanvas.height = pixelHeight;
+
+    const context = bouquetCanvas.getContext('2d');
+    context.imageSmoothingEnabled = false;
+    context.clearRect(0, 0, pixelWidth, pixelHeight);
+    context.drawImage(image, 0, 0, pixelWidth, pixelHeight);
+  });
+}
 
 function buildWheelLabels() {
   const segmentAngle = 360 / dateIdeas.length;
@@ -639,11 +669,17 @@ flowers.forEach((flower) => {
     flowerNoteTitle.textContent = flowerName;
     flowerNoteMessage.textContent = flowerMessages[flowerName];
     flowerNote.classList.add('revealed');
+
+    selectedFlowerPop.textContent = `${flowerEmojis[flowerName]} ${flowerName}`;
+    selectedFlowerPop.style.left = `${flower.offsetLeft + flower.offsetWidth / 2}px`;
+    selectedFlowerPop.style.top = `${Math.max(4, flower.offsetTop - 42)}px`;
+    selectedFlowerPop.classList.add('revealed');
   });
 });
 
 window.addEventListener('DOMContentLoaded', () => {
   buildWheelLabels();
+  renderPixelBouquet();
 
   noBtn.style.left = '50%';
   noBtn.style.top = '50%';
