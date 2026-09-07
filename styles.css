@@ -1057,6 +1057,28 @@ h2 {
   margin-bottom: 24px;
 }
 
+.bouquet-enter {
+  animation: bouquetPopIn 0.85s cubic-bezier(0.2, 1.35, 0.45, 1) both;
+}
+
+@keyframes bouquetPopIn {
+  0% {
+    opacity: 0;
+    transform: translateY(42px) scale(0.35) rotate(-5deg);
+  }
+  55% {
+    opacity: 1;
+    transform: translateY(-12px) scale(1.08) rotate(2deg);
+  }
+  78% {
+    transform: translateY(5px) scale(0.96) rotate(-1deg);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotate(0deg);
+  }
+}
+
 .bouquet-image {
   display: block;
   width: 100%;

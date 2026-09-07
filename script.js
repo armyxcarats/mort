@@ -43,6 +43,7 @@ const musicVolume = document.getElementById('music-volume');
 const flowers = document.querySelectorAll('.flower');
 const bouquetCanvas = document.getElementById('bouquet-canvas');
 const selectedFlowerPop = document.getElementById('selected-flower-pop');
+const bouquet = document.querySelector('.bouquet');
 
 const noMessages = [
   'Nope?',
@@ -205,6 +206,12 @@ function showScreen(screen) {
 
   if (screen === inviteScreen) {
     requestAnimationFrame(positionCats);
+  }
+
+  if (screen === flowerScreen && bouquet) {
+    bouquet.classList.remove('bouquet-enter');
+    void bouquet.offsetWidth;
+    bouquet.classList.add('bouquet-enter');
   }
 }
 
