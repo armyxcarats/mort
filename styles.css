@@ -1015,7 +1015,8 @@ h2 {
 }
 
 .flower-subtitle {
-  margin-bottom: 18px;
+  margin: 0 auto 18px;
+  text-align: center;
 }
 
 .flower-layout {
