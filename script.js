@@ -140,13 +140,13 @@ let noScale = 1; // shrinks each No click
 let yesScale = 1; // grows each No click
 
 const flowerMessages = {
-  Rose: 'You make my heart feel soft, brave, and completely at home. 🌹',
+  Rose: 'I have only known you a few months, yet I already know I want to spend my lifetime with you hehe 🌹',
   Sunflower: 'You bring so much light into my days that even the sunshine gets jealous. 🌻',
   Tulip: 'You are my favorite kind of lovely: sweet, surprising, and impossible not to smile about. 🌷',
-  'Cherry blossom': 'You make ordinary moments feel delicate, beautiful, and worth remembering. 🌸',
+  'Cherry blossom': 'No candy can be as sweet your smile, your laughter and the moment we share together. 🌸',
   Daisy: 'You make everything feel lighter, warmer, and a little more joyful. 🌼',
-  Hibiscus: 'There is something bright and unforgettable about you, just like this flower. 🌺',
-  'Bouquet sparkle': 'Every beautiful thing in this bouquet is still trying to catch up with you. 💐'
+  Hibiscus: 'My day is not complete with you, your presence is already a daily need for me. 🌺',
+  'Bouquet sparkle': 'Every beautiful thing in this bouquet is still trying to catch up with us hehehe. 💐'
 };
 
 const flowerEmojis = {
@@ -158,6 +158,13 @@ const flowerEmojis = {
   Hibiscus: '🌺',
   'Bouquet sparkle': '💐'
 };
+
+const safeFlowerMessagePositions = [
+  'middle-left',
+  'middle-right',
+  'bottom-left',
+  'bottom-right'
+];
 
 function renderPixelBouquet() {
   if (!bouquetCanvas) return;
@@ -678,9 +685,9 @@ flowers.forEach((flower) => {
     flower.classList.add('selected');
 
     const flowerName = flower.dataset.flower;
-    selectedFlowerPop.textContent = `${flowerEmojis[flowerName]} ${flowerName}`;
-    selectedFlowerPop.style.left = `${flower.offsetLeft + flower.offsetWidth / 2}px`;
-    selectedFlowerPop.style.top = `${Math.max(4, flower.offsetTop - 42)}px`;
+    selectedFlowerPop.innerHTML = `<strong>${flowerEmojis[flowerName]} ${flowerName}</strong><span>${flowerMessages[flowerName]}</span>`;
+    const randomPosition = safeFlowerMessagePositions[Math.floor(Math.random() * safeFlowerMessagePositions.length)];
+    selectedFlowerPop.className = `selected-flower-pop ${randomPosition}`;
     selectedFlowerPop.classList.remove('revealed');
     void selectedFlowerPop.offsetWidth;
     selectedFlowerPop.classList.add('revealed');
