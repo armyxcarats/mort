@@ -11,6 +11,7 @@ const heartBurst = document.getElementById('heart-burst');
 const spinBtn = document.getElementById('spin-btn');
 const loveDateBtn = document.getElementById('love-date-btn');
 const finalizeBtn = document.getElementById('finalize-btn');
+const continueFlowerBtn = document.getElementById('continue-flower-btn');
 const wheel = document.getElementById('wheel');
 const wheelResult = document.getElementById('wheel-result');
 const finalMessage = document.getElementById('final-message');
@@ -657,10 +658,17 @@ finalizeBtn.addEventListener('click', () => {
     return;
   }
 
-  finalMessage.textContent = `Perfect choice! We’re doing a ${selectedDateIdea || 'date'} and wearing ${selectedOutfit}. I’m already excited.`;
+  const chosenDate = selectedDateText.textContent;
+  const chosenTime = selectedTimeText.textContent;
+  finalMessage.textContent = `It’s a date, my love! We’ll have our ${selectedDateIdea || 'special date'} on ${chosenDate} at ${chosenTime}, and you’ll be wearing ${selectedOutfit}. I can’t wait to make this memory with you. 💖`;
   finalizeBtn.textContent = 'Date locked in!';
   finalizeBtn.disabled = true;
   finalizeBtn.style.opacity = '0.85';
+  continueFlowerBtn.classList.remove('hidden');
+  continueFlowerBtn.focus();
+});
+
+continueFlowerBtn.addEventListener('click', () => {
   showScreen(flowerScreen);
 });
 
