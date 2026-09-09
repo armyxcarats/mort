@@ -225,17 +225,23 @@ function showScreen(screen) {
     bouquet.classList.add('bouquet-enter');
   }
 
-  messageToggle.classList.toggle('visible', screen === flowerScreen);
+  const isFlowerScreen = screen === flowerScreen;
+  messageToggle.hidden = !isFlowerScreen;
+  messageToggle.classList.toggle('visible', isFlowerScreen);
+  if (!isFlowerScreen) closeMessageModal();
 }
 
 function closeMessageModal() {
   messageModal.classList.remove('open');
   messageModal.setAttribute('aria-hidden', 'true');
+  messageModal.hidden = true;
 }
 
 messageToggle.addEventListener('click', () => {
+  if (!flowerScreen.classList.contains('active')) return;
   messageModal.classList.add('open');
   messageModal.setAttribute('aria-hidden', 'false');
+  messageModal.hidden = false;
   document.getElementById('sender-name').focus();
 });
 
