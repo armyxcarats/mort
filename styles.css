@@ -1171,6 +1171,14 @@ h2 {
   line-height: 1.4;
 }
 
+.flower-message-cat {
+  display: block;
+  width: 82px;
+  height: auto;
+  margin: 10px auto 0;
+  object-fit: contain;
+}
+
 .selected-flower-pop.top-left {
   top: 24px;
   left: 24px;

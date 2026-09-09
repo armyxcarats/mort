@@ -145,7 +145,7 @@ const flowerMessages = {
   Tulip: 'You are my favorite kind of lovely: sweet, surprising, and impossible not to smile about. 🌷',
   'Cherry blossom': 'No candy can be as sweet your smile, your laughter and the moment we share together. 🌸',
   Daisy: 'You make everything feel lighter, warmer, and a little more joyful. 🌼',
-  Hibiscus: 'My day is not complete with you, your presence is already a daily need for me. 🌺',
+  Hibiscus: 'My day is not complete without you, your presence is already a daily need for me. 🌺',
   'Bouquet sparkle': 'Every beautiful thing in this bouquet is still trying to catch up with us hehehe. 💐'
 };
 
@@ -685,7 +685,7 @@ flowers.forEach((flower) => {
     flower.classList.add('selected');
 
     const flowerName = flower.dataset.flower;
-    selectedFlowerPop.innerHTML = `<strong>${flowerEmojis[flowerName]} ${flowerName}</strong><span>${flowerMessages[flowerName]}</span>`;
+    selectedFlowerPop.innerHTML = `<strong>${flowerEmojis[flowerName]} ${flowerName}</strong><span>${flowerMessages[flowerName]}</span><img class="flower-message-cat" src="catf.png" alt="Cute cat" />`;
     const randomPosition = safeFlowerMessagePositions[Math.floor(Math.random() * safeFlowerMessagePositions.length)];
     selectedFlowerPop.className = `selected-flower-pop ${randomPosition}`;
     selectedFlowerPop.classList.remove('revealed');
