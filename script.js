@@ -145,7 +145,7 @@ const flowerMessages = {
   Tulip: 'You are my favorite kind of lovely: sweet, surprising, and impossible not to smile about. 🌷',
   'Cherry blossom': 'No candy can be as sweet your smile, your laughter and the moment we share together. 🌸',
   Daisy: 'You make everything feel lighter, warmer, and a little more joyful. 🌼',
-  Hibiscus: 'My day is not complete without you, your presence is already a daily need for me. 🌺',
+  Hibiscus: 'My day is not complete without you, your presence is already a daily need for me',
   'Bouquet sparkle': 'Every beautiful thing in this bouquet is still trying to catch up with us hehehe. 💐'
 };
 
