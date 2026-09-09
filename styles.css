@@ -225,6 +225,137 @@ body {
   gap: 8px;
 }
 
+.message-toggle {
+  position: fixed;
+  left: 18px;
+  bottom: 18px;
+  z-index: 20;
+  display: none;
+  width: 52px;
+  height: 52px;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 50%;
+  background: linear-gradient(135deg, #ff9fc5, #ff6f9d);
+  box-shadow: 0 12px 24px rgba(197, 82, 128, 0.25);
+  color: #fff;
+  cursor: pointer;
+  font-size: 1.35rem;
+  transition: transform 0.2s ease;
+}
+
+.message-toggle.visible {
+  display: block;
+  animation: messageToggleIn 0.35s ease both;
+}
+
+.message-toggle:hover,
+.message-toggle:focus-visible {
+  transform: translateY(-3px) scale(1.05);
+}
+
+@keyframes messageToggleIn {
+  from { opacity: 0; transform: translateY(10px) scale(0.8); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.message-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: none;
+  place-items: center;
+  padding: 20px;
+  background: rgba(104, 57, 75, 0.2);
+  backdrop-filter: blur(6px);
+}
+
+.message-modal.open {
+  display: grid;
+}
+
+.message-card {
+  position: relative;
+  width: min(100%, 430px);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 30px;
+  border: 2px solid rgba(255, 111, 145, 0.35);
+  border-radius: 24px;
+  background: rgba(255, 248, 251, 0.97);
+  box-shadow: 0 24px 50px rgba(123, 58, 88, 0.25);
+  text-align: left;
+}
+
+.message-card h2 {
+  font-size: 2rem;
+}
+
+.message-intro,
+.message-note {
+  color: rgba(78, 45, 59, 0.72);
+}
+
+.message-intro {
+  margin: 0 0 18px;
+}
+
+.message-note {
+  margin: 14px 0 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.message-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  width: 34px;
+  height: 34px;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 214, 229, 0.72);
+  color: var(--text);
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.message-form {
+  display: grid;
+  gap: 9px;
+}
+
+.message-form label {
+  margin-top: 6px;
+  color: rgba(78, 45, 59, 0.9);
+  font-weight: 700;
+}
+
+.message-form input,
+.message-form textarea {
+  width: 100%;
+  padding: 12px 14px;
+  border: 2px solid rgba(255, 111, 145, 0.2);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.78);
+  color: var(--text);
+  font: inherit;
+  outline: none;
+  resize: vertical;
+}
+
+.message-form input:focus,
+.message-form textarea:focus {
+  border-color: rgba(255, 111, 145, 0.7);
+  box-shadow: 0 0 0 4px rgba(255, 111, 145, 0.12);
+}
+
+.message-submit {
+  margin-top: 12px;
+  background: linear-gradient(135deg, var(--pink-1), var(--pink-2));
+  color: var(--white);
+}
+
 .music-toggle {
   width: 46px;
   height: 46px;

@@ -45,6 +45,9 @@ const flowers = document.querySelectorAll('.flower');
 const bouquetCanvas = document.getElementById('bouquet-canvas');
 const selectedFlowerPop = document.getElementById('selected-flower-pop');
 const bouquet = document.querySelector('.bouquet');
+const messageToggle = document.getElementById('message-toggle');
+const messageModal = document.getElementById('message-modal');
+const messageClose = document.getElementById('message-close');
 
 const noMessages = [
   'Nope?',
@@ -221,7 +224,32 @@ function showScreen(screen) {
     void bouquet.offsetWidth;
     bouquet.classList.add('bouquet-enter');
   }
+
+  messageToggle.classList.toggle('visible', screen === flowerScreen);
 }
+
+function closeMessageModal() {
+  messageModal.classList.remove('open');
+  messageModal.setAttribute('aria-hidden', 'true');
+}
+
+messageToggle.addEventListener('click', () => {
+  messageModal.classList.add('open');
+  messageModal.setAttribute('aria-hidden', 'false');
+  document.getElementById('sender-name').focus();
+});
+
+messageClose.addEventListener('click', closeMessageModal);
+
+messageModal.addEventListener('click', (event) => {
+  if (event.target === messageModal) closeMessageModal();
+});
+
+document.addEventListener('keydown', (event) => {
+  if (event.key === 'Escape' && messageModal.classList.contains('open')) {
+    closeMessageModal();
+  }
+});
 
 loginForm.addEventListener('submit', (event) => {
   event.preventDefault();
