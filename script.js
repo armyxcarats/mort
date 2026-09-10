@@ -42,6 +42,7 @@ const musicPanelToggle = document.getElementById('music-panel-toggle');
 const musicSettings = document.getElementById('music-settings');
 const musicVolume = document.getElementById('music-volume');
 const songSelect = document.getElementById('song-select');
+const musicStatus = document.getElementById('music-status');
 const flowers = document.querySelectorAll('.flower');
 const bouquetCanvas = document.getElementById('bouquet-canvas');
 const selectedFlowerPop = document.getElementById('selected-flower-pop');
@@ -93,11 +94,22 @@ function updateMusicButton() {
 }
 
 function playSelectedSong() {
-  if (siteMusic.src !== new URL(songSelect.value, window.location.href).href) {
-    siteMusic.src = songSelect.value;
+  const selectedSource = new URL(songSelect.value, document.baseURI).href;
+  if (siteMusic.currentSrc !== selectedSource) {
+    siteMusic.src = selectedSource;
+    siteMusic.load();
   }
 
-  siteMusic.play().then(updateMusicButton).catch(updateMusicButton);
+  musicStatus.textContent = `Loading ${songSelect.options[songSelect.selectedIndex].text}...`;
+  siteMusic.play()
+    .then(() => {
+      musicStatus.textContent = '';
+      updateMusicButton();
+    })
+    .catch(() => {
+      musicStatus.textContent = 'This song could not be played in this browser.';
+      updateMusicButton();
+    });
 }
 
 const dateIdeas = [
@@ -319,11 +331,16 @@ musicVolume.addEventListener('input', () => {
 
 siteMusic.addEventListener('play', updateMusicButton);
 siteMusic.addEventListener('pause', updateMusicButton);
+siteMusic.addEventListener('error', () => {
+  musicStatus.textContent = 'This song could not be loaded.';
+  updateMusicButton();
+});
 
 songSelect.addEventListener('change', () => {
   siteMusic.pause();
   siteMusic.removeAttribute('src');
   siteMusic.load();
+  musicStatus.textContent = '';
   updateMusicButton();
 });
 
