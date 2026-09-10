@@ -19,6 +19,7 @@ const datePicker = document.getElementById('date-picker');
 const timePicker = document.getElementById('time-picker');
 const selectedDateText = document.getElementById('selected-date-text');
 const selectedTimeText = document.getElementById('selected-time-text');
+const planValidationMessage = document.getElementById('plan-validation-message');
 const wheelLabels = document.getElementById('wheel-labels');
 const outfitCards = document.querySelectorAll('.outfit-card');
 const outfitPreviewPlaceholder = document.getElementById('outfit-preview-placeholder');
@@ -632,6 +633,7 @@ datePicker.addEventListener('input', () => {
   }) : 'No date picked yet';
 
   selectedDateText.textContent = formattedDate;
+  planValidationMessage.textContent = '';
 });
 
 timePicker.addEventListener('input', () => {
@@ -647,6 +649,7 @@ timePicker.addEventListener('input', () => {
     hour: 'numeric',
     minute: '2-digit'
   });
+  planValidationMessage.textContent = '';
 });
 
 yesBtn.addEventListener('click', () => {
@@ -682,6 +685,17 @@ yesBtn.addEventListener('click', () => {
 noBtn.addEventListener('click', handleNoClick);
 spinBtn.addEventListener('click', spinWheel);
 loveDateBtn.addEventListener('click', () => {
+  if (!datePicker.value || !timePicker.value) {
+    planValidationMessage.textContent = !datePicker.value && !timePicker.value
+      ? 'Please choose a date and time before continuing.'
+      : !datePicker.value
+        ? 'Please choose a date before continuing.'
+        : 'Please choose a time before continuing.';
+    (datePicker.value ? timePicker : datePicker).focus();
+    return;
+  }
+
+  planValidationMessage.textContent = '';
   showScreen(outfitScreen);
 });
 

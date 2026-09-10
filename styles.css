@@ -1051,6 +1051,14 @@ h2 {
   color: rgba(78, 45, 59, 0.9);
 }
 
+.plan-validation-message {
+  min-height: 22px;
+  margin: 12px 0 0;
+  color: #b33e68;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
 .outfit-grid {
   display: grid;
   width: 100%;
