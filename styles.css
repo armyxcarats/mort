@@ -368,12 +368,13 @@ body {
   background: rgba(255, 250, 253, 0.9);
   box-shadow: 0 12px 24px rgba(197, 82, 128, 0.2);
   cursor: pointer;
-  font-size: 1.2rem;
+  color: var(--pink-2);
+  font: 700 1.8rem/1 "Fredoka", sans-serif;
 }
 
 .music-settings {
   display: none;
-  align-items: center;
+  align-items: stretch;
   gap: 12px;
   padding: 10px 14px;
   border: 1px solid rgba(255, 255, 255, 0.86);
@@ -395,6 +396,25 @@ body {
   color: var(--white);
   cursor: pointer;
   font: 600 0.82rem "Fredoka", sans-serif;
+}
+
+.song-picker {
+  display: grid;
+  gap: 4px;
+  color: var(--text);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+#song-select {
+  width: 230px;
+  max-width: 45vw;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 111, 145, 0.32);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.82);
+  color: var(--text);
+  font: inherit;
 }
 
 .volume-control {

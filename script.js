@@ -41,6 +41,7 @@ const musicToggle = document.getElementById('music-toggle');
 const musicPanelToggle = document.getElementById('music-panel-toggle');
 const musicSettings = document.getElementById('music-settings');
 const musicVolume = document.getElementById('music-volume');
+const songSelect = document.getElementById('song-select');
 const flowers = document.querySelectorAll('.flower');
 const bouquetCanvas = document.getElementById('bouquet-canvas');
 const selectedFlowerPop = document.getElementById('selected-flower-pop');
@@ -62,16 +63,40 @@ const noMessages = [
   'The button broke... so is my heart 😭'
 ];
 
+const songs = [
+  ['123 - Over October', 'songs/123 - Over October.m4a'],
+  ['Cold Feet - The Ridleys', 'songs/Cold Feet - The Ridleys.m4a'],
+  ['Dalangin - Sugarcane', 'songs/Dalangin - SUgarcane.m4a'],
+  ['Dilaw - Maki', 'songs/Dilaw - Maki.m4a'],
+  ['Just Like A Splendid Love Song - Orange and Lemons', 'songs/Just Like A Splendid love Song-  Orange and Lemoins.m4a'],
+  ['Love Is - The Ridleys', 'songs/Love Is - The Ridleys.m4a'],
+  ['Paninindigan Kita - Ben and Ben', 'songs/Paninindigan Kita - Ben and Ben.m4a'],
+  ['Patutunguhan - Cup of Joe', 'songs/Patutunguhan - Cup of Joe.m4a'],
+  ['Saksi ang Langit - December Avenue', 'songs/Saksi ang Langit - December Avenue.m4a'],
+  ['Someday - The Ridleys', 'songs/Someday - The Ridleys.m4a']
+];
+
+songs.forEach(([title, source]) => {
+  const option = document.createElement('option');
+  option.value = source;
+  option.textContent = title;
+  songSelect.appendChild(option);
+});
+
 siteMusic.volume = Number(musicVolume.value);
 
 function updateMusicButton() {
   const isPlaying = !siteMusic.paused;
-  musicToggle.setAttribute('aria-label', isPlaying ? 'Pause music' : 'Play music');
-  musicToggle.textContent = isPlaying ? '🔊' : '🔇';
-  musicPanelToggle.textContent = isPlaying ? 'Pause music' : 'Play music';
+  musicToggle.setAttribute('aria-label', 'Open music player');
+  musicToggle.textContent = '♪';
+  musicPanelToggle.textContent = isPlaying ? 'Pause song' : 'Play selected song';
 }
 
-function startMusic() {
+function playSelectedSong() {
+  if (siteMusic.src !== new URL(songSelect.value, window.location.href).href) {
+    siteMusic.src = songSelect.value;
+  }
+
   siteMusic.play().then(updateMusicButton).catch(updateMusicButton);
 }
 
@@ -265,7 +290,6 @@ loginForm.addEventListener('submit', (event) => {
 
   if (nickname && password === '6767') {
     loginMessage.textContent = '';
-    startMusic();
     showScreen(inviteScreen);
     return;
   }
@@ -276,26 +300,17 @@ loginForm.addEventListener('submit', (event) => {
 });
 
 musicToggle.addEventListener('click', () => {
-  if (siteMusic.paused) {
-    startMusic();
-  } else {
-    siteMusic.pause();
-    updateMusicButton();
-  }
+  const isOpen = musicSettings.classList.toggle('open');
+  musicSettings.setAttribute('aria-hidden', String(!isOpen));
 });
 
 musicPanelToggle.addEventListener('click', () => {
   if (siteMusic.paused) {
-    startMusic();
+    playSelectedSong();
   } else {
     siteMusic.pause();
     updateMusicButton();
   }
-});
-
-musicToggle.addEventListener('click', () => {
-  const isOpen = musicSettings.classList.toggle('open');
-  musicSettings.setAttribute('aria-hidden', String(!isOpen));
 });
 
 musicVolume.addEventListener('input', () => {
@@ -305,8 +320,12 @@ musicVolume.addEventListener('input', () => {
 siteMusic.addEventListener('play', updateMusicButton);
 siteMusic.addEventListener('pause', updateMusicButton);
 
-document.addEventListener('pointerdown', startMusic, { once: true });
-document.addEventListener('keydown', startMusic, { once: true });
+songSelect.addEventListener('change', () => {
+  siteMusic.pause();
+  siteMusic.removeAttribute('src');
+  siteMusic.load();
+  updateMusicButton();
+});
 
 function moveNoButton() {
   const container = noBtn.parentElement;
