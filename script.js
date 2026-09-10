@@ -48,8 +48,18 @@ const bouquetCanvas = document.getElementById('bouquet-canvas');
 const selectedFlowerPop = document.getElementById('selected-flower-pop');
 const bouquet = document.querySelector('.bouquet');
 const messageToggle = document.getElementById('message-toggle');
+const detailsToggle = document.getElementById('details-toggle');
 const messageModal = document.getElementById('message-modal');
 const messageClose = document.getElementById('message-close');
+const messageTitle = document.getElementById('message-title');
+const messageIntro = document.querySelector('.message-intro');
+const messageForm = document.getElementById('message-form');
+const senderName = document.getElementById('sender-name');
+const senderEmail = document.getElementById('sender-email');
+const selectedDateInput = document.getElementById('selected-date');
+const selectedTimeInput = document.getElementById('selected-time');
+const selectedDateTypeInput = document.getElementById('selected-date-type');
+const selectedOutfitInput = document.getElementById('selected-outfit');
 
 const noMessages = [
   'Nope?',
@@ -264,7 +274,9 @@ function showScreen(screen) {
 
   const isFlowerScreen = screen === flowerScreen;
   messageToggle.hidden = !isFlowerScreen;
+  detailsToggle.hidden = !isFlowerScreen;
   messageToggle.classList.toggle('visible', isFlowerScreen);
+  detailsToggle.classList.toggle('visible', isFlowerScreen);
   if (!isFlowerScreen) closeMessageModal();
 }
 
@@ -274,12 +286,40 @@ function closeMessageModal() {
   messageModal.hidden = true;
 }
 
-messageToggle.addEventListener('click', () => {
+function syncDateDetails() {
+  selectedDateInput.value = selectedDateText.textContent;
+  selectedTimeInput.value = selectedTimeText.textContent;
+  selectedDateTypeInput.value = selectedDateIdea || 'No date type selected';
+  selectedOutfitInput.value = selectedOutfit || 'No outfit selected';
+}
+
+function openMessageModal(mode) {
   if (!flowerScreen.classList.contains('active')) return;
+  syncDateDetails();
+  const detailsOnly = mode === 'details';
+  messageTitle.textContent = detailsOnly ? 'Send my date details' : 'Send me a message';
+  messageIntro.textContent = detailsOnly
+    ? 'Send my chosen date, time, date type, and outfit.'
+    : 'Write anything you want me to know.';
+  senderName.required = !detailsOnly;
+  senderEmail.required = !detailsOnly;
+  document.getElementById('sender-message').required = !detailsOnly;
+  messageForm.dataset.mode = mode;
+  messageForm.querySelector('.message-submit').textContent = detailsOnly ? 'Send date details 💖' : 'Send message 💖';
   messageModal.classList.add('open');
   messageModal.setAttribute('aria-hidden', 'false');
   messageModal.hidden = false;
-  document.getElementById('sender-name').focus();
+  (detailsOnly ? messageForm.querySelector('.message-submit') : senderName).focus();
+}
+
+messageToggle.addEventListener('click', () => openMessageModal('message'));
+detailsToggle.addEventListener('click', () => openMessageModal('details'));
+
+messageForm.addEventListener('submit', () => {
+  syncDateDetails();
+  messageForm.querySelector('input[name="_subject"]').value = messageForm.dataset.mode === 'details'
+    ? 'Date details from your date website'
+    : 'A new message from your date website';
 });
 
 messageClose.addEventListener('click', closeMessageModal);

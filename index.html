@@ -203,6 +203,7 @@
       </main>
 
       <button id="message-toggle" class="message-toggle" type="button" aria-label="Send me a message" title="Send me a message" hidden>💌</button>
+      <button id="details-toggle" class="details-toggle" type="button" aria-label="Send my date details" title="Send my date details" hidden>📋</button>
 
       <div id="message-modal" class="message-modal" aria-hidden="true" hidden>
         <div class="message-card" role="dialog" aria-modal="true" aria-labelledby="message-title">
@@ -218,8 +219,12 @@
             <input id="sender-name" name="Name" type="text" placeholder="Your name" required />
             <label for="sender-email">Your email</label>
             <input id="sender-email" name="Email" type="email" placeholder="you@example.com" required />
+            <input id="selected-date" name="Chosen date" type="hidden" />
+            <input id="selected-time" name="Chosen time" type="hidden" />
+            <input id="selected-date-type" name="Date type" type="hidden" />
+            <input id="selected-outfit" name="Outfit" type="hidden" />
             <label for="sender-message">Your message</label>
-            <textarea id="sender-message" name="Message" rows="5" placeholder="Write me something sweet..." required></textarea>
+            <textarea id="sender-message" name="Message" rows="5" placeholder="Write me something sweet..."></textarea>
             <button class="action-btn message-submit" type="submit">Send message 💖</button>
           </form>
           <p class="message-note">Your message will be sent privately to me.</p>
